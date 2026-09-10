@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>耕读园-传统耕读文化传承与田园生活体验平台</title>
+    <meta name="description" content="耕读园致力于传承中华耕读文化，提供田园研学、农耕体验、国学课堂、乡村民宿、生态农庄等信息与指南，帮助您了解并体验晴耕雨读的诗意生活方式。">
+    <meta name="keywords" content="耕读园,耕读文化,农耕体验,田园教育,研学旅行,国学课堂,乡村民宿,生态农业,晴耕雨读">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Noto Sans CJK SC", sans-serif;
+            background-color: #faf9f5;
+            color: #3a3a34;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* ===== 顶部提示条 ===== */
+        .top-bar {
+            background-color: #4a5d3e;
+            color: #e8e4d8;
+            font-size: 13px;
+            padding: 6px 0;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        /* ===== 页眉 ===== */
+        .site-header {
+            background-color: #faf9f5;
+            border-bottom: 1px solid #e5e0d3;
+            padding: 20px 0;
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-icon {
+            width: 52px;
+            height: 52px;
+            background-color: #5f7149;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f5f0e1;
+            font-size: 26px;
+            flex-shrink: 0;
+        }
+        .site-name {
+            font-size: 28px;
+            font-weight: 700;
+            color: #3f4d32;
+            letter-spacing: 2px;
+        }
+        .site-desc {
+            font-size: 13px;
+            color: #7b7b6e;
+            margin-top: 2px;
+            letter-spacing: 1px;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .search-box {
+            display: flex;
+            background: #fff;
+            border: 1px solid #d8d2c2;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+        .search-box input {
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            outline: none;
+            width: 200px;
+            background: transparent;
+        }
+        .search-box button {
+            background: #5f7149;
+            border: none;
+            color: #fff;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* ===== 导航 ===== */
+        .main-nav {
+            background-color: #3f4d32;
+            border-bottom: 3px solid #8a9b6b;
+        }
+        .main-nav .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .main-nav a {
+            color: #f0ecdc;
+            padding: 12px 24px;
+            font-size: 16px;
+            display: block;
+            transition: background-color 0.2s;
+            border-right: 1px solid rgba(255,255,255,0.08);
+        }
+        .main-nav a:hover {
+            background-color: #5f7149;
+        }
+        .main-nav a.active {
+            background-color: #5f7149;
+        }
+
+        /* ===== 主横幅 ===== */
+        .hero {
+            background: linear-gradient(rgba(40, 48, 30, 0.6), rgba(40, 48, 30, 0.6)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400"><rect width="1200" height="400" fill="%235f7149"/><circle cx="100" cy="80" r="40" fill="%23f5e9c6" opacity="0.3"/><circle cx="1100" cy="70" r="60" fill="%23f5e9c6" opacity="0.2"/><path d="M0 350 Q 300 250 600 330 T 1200 280 L 1200 400 L 0 400 Z" fill="%234d5c38" opacity="0.5"/><path d="M0 380 Q 400 320 800 360 T 1200 340 L 1200 400 L 0 400 Z" fill="%233a452b" opacity="0.7"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: #f9f6ea;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: 8px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            letter-spacing: 2px;
+            opacity: 0.95;
+        }
+        .hero-btn {
+            display: inline-block;
+            background: #c9a35f;
+            color: #2e3522;
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 6px;
+            border: 1px solid #c9a35f;
+            transition: 0.2s;
+        }
+        .hero-btn:hover {
+            background: #b8924e;
+        }
+
+        /* ===== 板块通用 ===== */
+        .section {
+            padding: 60px 0;
+        }
+        .section-alt {
+            background-color: #f2efe6;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-title h2 {
+            font-size: 32px;
+            color: #3f4d32;
+            letter-spacing: 3px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 12px;
+        }
+        .section-title h2:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #c9a35f;
+        }
+        .section-title p {
+            color: #7b7b6e;
+            margin-top: 10px;
+            font-size: 15px;
+        }
+
+        /* ===== 特色卡片 ===== */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+        .feature-card {
+            background: #fff;
+            border: 1px solid #e8e2d2;
+            border-radius: 12px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: 0.25s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+        }
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+        .feature-card h3 {
+            font-size: 18px;
+            color: #3f4d32;
+            margin-bottom: 8px;
+        }
+        .feature-card p {
+            font-size: 14px;
+            color: #6e6e61;
+            line-height: 1.6;
+        }
+
+        /* ===== 内容布局 ===== */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+        .main-list .list-item {
+            display: flex;
+            gap: 18px;
+            padding: 18px 0;
+            border-bottom: 1px solid #e5e0d3;
+        }
+        .main-list .list-item:last-child {
+            border-bottom: none;
+        }
+        .thumb {
+            width: 150px;
+            height: 100px;
+            background: #d9d2c0;
+            border-radius: 8px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5f7149;
+            font-size: 14px;
+            background-size: cover;
+            background-position: center;
+        }
+        .item-content {
+            flex: 1;
+        }
+        .item-content h3 {
+            font-size: 18px;
+            margin-bottom: 6px;
+            color: #333;
+        }
+        .item-content h3 a:hover {
+            color: #5f7149;
+        }
+        .item-content p {
+            font-size: 14px;
+            color: #6e6e61;
+            margin-bottom: 6px;
+        }
+        .meta {
+            font-size: 12px;
+            color: #9a9a8a;
+            display: flex;
+            gap: 15px;
+        }
+        .meta span i {
+            margin-right: 3px;
+        }
+
+        /* ===== 侧边栏 ===== */
+        .sidebar .widget {
+            background: #fff;
+            border: 1px solid #e8e2d2;
+            border-radius: 10px;
+            padding: 22px;
+            margin-bottom: 25px;
+        }
+        .widget h3 {
+            font-size: 18px;
+            color: #3f4d32;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #c9a35f;
+        }
+        .widget ul li {
+            padding: 7px 0;
+            border-bottom: 1px dashed #efead9;
+            font-size: 14px;
+        }
+        .widget ul li:last-child {
+            border-bottom: none;
+        }
+        .widget ul li a:hover {
+            color: #5f7149;
+        }
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .tag-cloud span {
+            background: #f2efe6;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 13px;
+            color: #3f4d32;
+        }
+
+        /* ===== 研学/课程板块 ===== */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        .course-card {
+            background: #fff;
+            border: 1px solid #e8e2d2;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.2s;
+        }
+        .course-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+        .course-img {
+            height: 140px;
+            background-color: #b7c2a3;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3f4d32;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .course-info {
+            padding: 18px;
+        }
+        .course-info h3 {
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+        .course-info p {
+            font-size: 13px;
+            color: #6e6e61;
+            margin-bottom: 10px;
+        }
+        .course-meta {
+            font-size: 12px;
+            color: #8a8a7a;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* ===== 故事/博客 ===== */
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+        .story-item {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #c9a35f;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .story-item h3 {
+            font-size: 18px;
+            color: #3f4d32;
+            margin-bottom: 6px;
+        }
+        .story-item p {
+            font-size: 14px;
+            color: #5e5e50;
+        }
+        .story-item .author {
+            margin-top: 12px;
+            font-size: 13px;
+            color: #9a9a8a;
+        }
+
+        /* ===== 活动/公告 ===== */
+        .event-list {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px 25px;
+            border: 1px solid #e8e2d2;
+        }
+        .event-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f2efe6;
+        }
+        .event-item:last-child {
+            border-bottom: none;
+        }
+        .event-date {
+            background: #5f7149;
+            color: #f5f0e1;
+            border-radius: 8px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .event-date .day {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .event-date .month {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        .event-info h4 {
+            font-size: 16px;
+            margin-bottom: 3px;
+        }
+        .event-info p {
+            font-size: 13px;
+            color: #6e6e61;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: #fff;
+            border: 1px solid #e8e2d2;
+            border-radius: 10px;
+            padding: 20px 25px;
+            margin-bottom: 12px;
+        }
+        .faq-item h3 {
+            font-size: 17px;
+            color: #3f4d32;
+            margin-bottom: 6px;
+        }
+        .faq-item p {
+            font-size: 14px;
+            color: #5e5e50;
+        }
+
+        /* ===== 页脚 ===== */
+        .site-footer {
+            background-color: #2e3522;
+            color: #c4bcab;
+            padding: 40px 0 20px;
+            margin-top: 20px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+        .footer-grid h4 {
+            color: #e8e4d8;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        .footer-grid p {
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .footer-grid ul li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .footer-grid ul li a:hover {
+            color: #c9a35f;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #4d5c38;
+            font-size: 13px;
+            color: #8f8f7a;
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 992px) {
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .course-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+                letter-spacing: 4px;
+            }
+            .hero p {
+                font-size: 16px;
+            }
+            .header-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .header-right {
+                width: 100%;
+                justify-content: center;
+            }
+            .search-box input {
+                width: 140px;
+            }
+            .main-nav a {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+            .story-grid {
+                grid-template-columns: 1fr;
+            }
+            .main-list .list-item {
+                flex-direction: column;
+            }
+            .thumb {
+                width: 100%;
+                height: 120px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+    <!-- 顶部栏 -->
+    <div class="top-bar">晴耕雨读 · 半亩方塘 · 耕读传家</div>
+
+    <!-- 页眉 -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="logo-area">
+                <div class="logo-icon">耕</div>
+                <div>
+                    <div class="site-name">耕读园</div>
+                    <div class="site-desc">传承耕读文化 · 体验田园生活</div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <input type="text" placeholder="搜索课程/活动/文章...">
+                    <button>搜索</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 导航栏 -->
+    <nav class="main-nav">
+        <div class="container">
+            <a href="#" class="active">首页</a>
+            <a href="#">耕读文化</a>
+            <a href="#">田园研学</a>
+            <a href="#">农耕体验</a>
+            <a href="#">国学课堂</a>
+            <a href="#">乡村民宿</a>
+            <a href="#">生态农庄</a>
+            <a href="#">关于我们</a>
+        </div>
+    </nav>
+
+    <!-- 主横幅 -->
+    <section class="hero">
+        <h1>耕读园</h1>
+        <p>在田野与书卷之间，寻找诗意栖居的东方生活智慧</p>
+        <a href="#" class="hero-btn">了解耕读文化</a>
+        <a href="#" class="hero-btn" style="background: transparent; color: #f9f6ea; border-color: #f9f6ea;">预约研学体验</a>
+    </section>
+
+    <!-- 特色板块 -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>耕读生活 · 四大体验</h2>
+                <p>从书本到田野，从城市到乡村，在自然中学习，在劳动中成长</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🌾</div>
+                    <h3>农耕体验</h3>
+                    <p>亲手播种、育苗、收获，体验二十四节气与土地节律，感受食物本来的味道。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📖</div>
+                    <h3>国学课堂</h3>
+                    <p>诵读经典、习字临帖、礼仪传习，在耕读传家的传统中涵养心性与品格。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏡</div>
+                    <h3>田园民宿</h3>
+                    <p>择一处乡居，听鸟鸣虫唱，看炊烟袅袅，让身心在田园中得到真正的休憩。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌱</div>
+                    <h3>自然教育</h3>
+                    <p>面向亲子的自然观察与劳动教育课程，让孩子在泥土芬芳中建立与自然的连接。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要内容区：文章列表 + 侧边栏 -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="content-grid">
+                <div class="main-list">
+                    <div class="section-title" style="text-align:left; margin-bottom:20px;">
+                        <h2 style="font-size:24px;">耕读资讯</h2>
+                    </div>
+                    <div class="list-item">
+                        <div class="thumb" style="background-image: linear-gradient(135deg,#7a8f63,#a3b58a);">节气插画</div>
+                        <div class="item-content">
+                            <h3><a href="#">谷雨时节话农耕：春耕备耕正当时</a></h3>
+                            <p>谷雨前后，种瓜点豆。耕读园的小菜园里，新一季的瓜苗已经破土而出...</p>
+                            <div class="meta"><span>📅 2025-04-20</span><span>👁 1,280</span><span>🏷 节气</span></div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="thumb" style="background-image: linear-gradient(135deg,#b5a67a,#d6c69b);">课堂剪影</div>
+                        <div class="item-content">
+                            <h3><a href="#">国学夏令营招募：读诗书、习礼仪、知稼穑</a></h3>
+                            <p>这个夏天，让孩子们在耕读园度过一段难忘的时光，上午读书，下午种地...</p>
+                            <div class="meta"><span>📅 2025-04-18</span><span>👁 2,045</span><span>🏷 夏令营</span></div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="thumb" style="background-image: linear-gradient(135deg,#6e8f7a,#9db8a5);">民宿小院</div>
+                        <div class="item-content">
+                            <h3><a href="#">耕读园民宿开放预约：来乡下住几天吧</a></h3>
+                            <p>小院翻修完成，保留了原有的土墙和木梁，新增了舒适的卫浴和阅读角...</p>
+                            <div class="meta"><span>📅 2025-04-12</span><span>👁 1,786</span><span>🏷 民宿</span></div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="thumb" style="background-image: linear-gradient(135deg,#8a6f5e,#b3947f);">手工豆腐</div>
+                        <div class="item-content">
+                            <h3><a href="#">古法豆腐体验课：从一颗黄豆开始</a></h3>
+                            <p>磨豆、滤浆、点卤、压制成型，每一步都充满了时间的味道和手作的温度...</p>
+                            <div class="meta"><span>📅 2025-04-08</span><span>👁 968</span><span>🏷 手作</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="sidebar">
+                    <div class="widget">
+                        <h3>热门专题</h3>
+                        <ul>
+                            <li><a href="#">🌿 二十四节气与农耕</a></li>
+                            <li><a href="#">📚 耕读传家：家风故事</a></li>
+                            <li><a href="#">🏞 乡村自然笔记</a></li>
+                            <li><a href="#">👨‍🌾 新农人访谈</a></li>
+                            <li><a href="#">🍵 田园茶事与雅集</a></li>
+                        </ul>
+                    </div>
+                    <div class="widget">
+                        <h3>近期活动</h3>
+                        <ul>
+                            <li><a href="#">5月1日-5日 · 春耕节</a></li>
+                            <li><a href="#">5月18日 · 亲子插秧日</a></li>
+                            <li><a href="#">6月1日 · 儿童国学诵读会</a></li>
+                            <li><a href="#">6月中旬 · 端午艾草香囊手作</a></li>
+                        </ul>
+                    </div>
+                    <div class="widget">
+                        <h3>标签云</h3>
+                        <div class="tag-cloud">
+                            <span>农耕</span><span>国学</span><span>亲子</span><span>民宿</span><span>自然</span><span>节气</span><span>研学</span><span>手作</span><span>生态</span><span>乡村</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- 研学课程板块 -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>研学与课程</h2>
+                <p>知行合一，在真实的土地与生活里学习</p>
+            </div>
+            <div class="course-grid">
+                <div class="course-card">
+                    <div class="course-img" style="background-image: linear-gradient(135deg,#7d9b76,#a6c29c);">🌾 农耕系列</div>
+                    <div class="course-info">
+                        <h3>四季农耕体验课</h3>
+                        <p>跟随农事历，全年参与播种、管养、收获，建立对食物与土地的完整认知。</p>
+                        <div class="course-meta"><span>适合：6岁以上</span><span>⏳ 半日/全日</span></div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img" style="background-image: linear-gradient(135deg,#b0a077,#d6c69b);">📜 国学系列</div>
+                    <div class="course-info">
+                        <h3>蒙学与经典诵读</h3>
+                        <p>面向少儿的《三字经》《千字文》《论语》选读，配合礼仪与书法练习。</p>
+                        <div class="course-meta"><span>适合：5-12岁</span><span>⏳ 周末班</span></div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img" style="background-image: linear-gradient(135deg,#8b7a66,#b39e85);">🏺 手作系列</div>
+                    <div class="course-info">
+                        <h3>古法手作工作坊</h3>
+                        <p>豆腐、米酒、酱菜、艾草香囊等传统手作体验，感受慢生活的乐趣。</p>
+                        <div class="course-meta"><span>适合：成人/亲子</span><span>⏳ 2-3小时</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 耕读故事 -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-title">
+                <h2>耕读故事</h2>
+                <p>来自乡野的真实记录与感悟</p>
+            </div>
+            <div class="story-grid">
+                <div class="story-item">
+                    <h3>把书房搬到田边</h3>
+                    <p>去年春天，我在耕读园租了一小块地。每个周末，带着孩子来翻土、种菜。累了就在树荫下读书，风吹过稻田，书页沙沙作响。这种“晴耕雨读”的日子，让原本焦虑的心慢慢安定下来。</p>
+                    <div class="author">—— 一位城市母亲的自述</div>
+                </div>
+                <div class="story-item">
+                    <h3>村里的老屋与新课堂</h3>
+                    <p>耕读园利用村里闲置的旧宅改造了国学讲堂。梁还是老梁，墙是土墙，但孩子们在这里诵读的声音，让老屋重新有了生气。村里的老人偶尔也会来坐坐，给孩子们讲讲过去的故事。</p>
+                    <div class="author">—— 乡村建设志愿者</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 活动公告 -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>近期活动与公告</h2>
+                <p>关注耕读园最新动态，不错过每一场田园之约</p>
+            </div>
+            <div class="event-list">
+                <div class="event-item">
+                    <div class="event-date"><span class="day">01</span><span class="month">5月</span></div>
+                    <div class="event-info">
+                        <h4>春耕开犁节 · 田园开放日</h4>
+                        <p>耕读园春季开园仪式，含传统祭祀、开犁表演、市集与体验活动。</p>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-date"><span class="day">18</span><span class="month">5月</span></div>
+                    <div class="event-info">
+                        <h4>亲子插秧日</h4>
+                        <p>赤脚下田，体验插秧的乐趣，听农人讲解水稻的一生。</p>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-date"><span class="day">01</span><span class="month">6月</span></div>
+                    <div class="event-info">
+                        <h4>儿童节 · 国学游园会</h4>
+                        <p>投壶、猜谜、诵读、书法体验，让孩子们在游戏中亲近传统文化。</p>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-date"><span class="day">10</span><span class="month">6月</span></div>
+                    <div class="event-info">
+                        <h4>端午艾草香囊手作</h4>
+                        <p>采摘新鲜艾草，学习传统香囊制作，迎接端午佳节。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ板块 -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-title">
+                <h2>常见问题</h2>
+                <p>关于耕读园，您可能想了解这些</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3>Q: 耕读园具体在哪里？如何前往？</h3>
+                    <p>A: 耕读园位于近郊乡村，具体地址及交通路线可联系我们获取。建议自驾前往，部分节假日提供市区至园区的接驳班车，请关注活动通知。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Q: 研学课程适合多大的孩子参加？</h3>
+                    <p>A: 不同课程有不同年龄建议，一般农耕体验建议6岁以上，国学课程5-12岁均可。亲子类活动建议家长陪同参与，具体请查看课程详情。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Q: 需要提前预约吗？可以临时前往吗？</h3>
+                    <p>A: 为了有更好的体验和安排，参加课程、使用民宿或团体参观都需要提前预约。仅游览园区可在开放时间内直接前往，但建议提前电话确认。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Q: 耕读园是否有餐饮服务？</h3>
+                    <p>A: 园区内设有田园餐厅，提供时令农家菜，食材多来自园区自种。团队用餐建议提前一天预订。民宿住客可预约家常晚餐。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>耕读园</h4>
+                    <p>以耕养读，以读立身。耕读园致力于传承和弘扬中华耕读文化，打造集农耕体验、国学教育、田园民宿、自然研学于一体的复合型文化空间。</p>
+                </div>
+                <div>
+                    <h4>快速导航</h4>
+                    <ul>
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">园区导览</a></li>
+                        <li><a href="#">课程预约</a></li>
+                        <li><a href="#">民宿预订</a></li>
+                        <li><a href="#">加入我们</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>联系方式</h4>
+                    <ul>
+                        <li>📞 电话：0574-8888 6666</li>
+                        <li>📧 邮箱：hello@gengduyuan.com</li>
+                        <li>📍 地址：浙江省宁波市镇海区</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li>微信公众号：耕读园</li>
+                        <li>新浪微博：@耕读园</li>
+                        <li>小红书：耕读园</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 耕读园 GengDuYuan.com · 浙ICP备2025000000号 · 本站为文化展示与信息平台</p>
+            </div>
+        </div>
+    </footer>
+</body>
+                                                   </html>
